@@ -12,19 +12,18 @@ Referências:
     Machine Intelligence. 2002. pp. 603-619.
 
 """
-
+# %% Bibliotecas
+#==============================================================================
 import numpy as np
 from sklearn.cluster import MeanShift, estimate_bandwidth
 from sklearn.datasets import make_blobs
 
-# %%
-# Geração de dados amostrais
+# %%Geração de dados amostrais
 #==============================================================================
 centers = [[1, 1], [-1, -1], [1, -1]]
 X, _ = make_blobs(n_samples=50000, centers=centers, cluster_std=0.425)
 
-# %%
-# Computar o agrupamento com o MeanShift
+# %%Computar o agrupamento com o MeanShift
 #==============================================================================
 
 # A seguinte largura de banda pode ser detectada automaticamente usando
@@ -40,8 +39,7 @@ n_grupos_ = len(rotulos_unicos)
 
 print("Número de grupos estimado : %d" % n_grupos_)
 
-# %%
-# Exibição dos resultados
+# %%Exibição dos resultados
 #==============================================================================
 import matplotlib.pyplot as plt
 from itertools import cycle
@@ -53,7 +51,7 @@ colors = cycle("bgrcmykbgrcmykbgrcmykbgrcmyk")
 for k, col in zip(range(n_grupos_), colors):
     my_members = niveis == k
     centro_grupo = centros_grupos[k]
-    plt.plot(X[my_members, 0], X[my_members, 1], col + ",", alpha=0.25)
+    plt.plot(X[my_members, 0], X[my_members, 1], col + ".", alpha=0.15)
     plt.plot(
         centro_grupo[0],
         centro_grupo[1],
@@ -64,3 +62,5 @@ for k, col in zip(range(n_grupos_), colors):
     )
 plt.title("Número de grupos estimado: %d" % n_grupos_)
 plt.show()
+
+# %%
